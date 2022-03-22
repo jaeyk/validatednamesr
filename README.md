@@ -16,6 +16,8 @@ devtools::install_github("jaeyk/validatednamesr",
 1. `view_data()`: This function views the dataset's filename, type, and notes. 
 
 ```r
+view_data() %>% head()
+
                   filename      type                   notes
 1                names.rds  Original               Raw names
 2             study123.rds  Original    Pooled study results
