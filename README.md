@@ -1,6 +1,6 @@
 # validatednamesr
 
-Author: Jae Yeon Kim and Charles Crabtree
+Authors: Jae Yeon Kim and Charles Crabtree
 
 ## Summary 
 
