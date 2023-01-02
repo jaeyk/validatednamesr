@@ -46,10 +46,10 @@ view_data()
 # The following two commands will provide the same output.
 
 #file name
-df <- load_data(file_name = "names.rds")
+raw_names <- load_data(file_name = "names.rds")
 
 # file note 
-df <- load_data(file_note == "Raw names")
+raw_names <- load_data(file_note == "Raw names")
 ```
 
 ### Select names 
@@ -63,7 +63,7 @@ asian_names <- select_names(race = "Asian") # Asian signalling names
 
 asian_names 
 
-  first last  w.asian name      identity       pct_c…¹ avg_i…² avg_e…³ avg_c…⁴
+  first last  w.asian name      identity       pct_correct avg_income avg_education avg_citizenship_guess
   <chr> <chr>   <dbl> <chr>     <fct>            <dbl>   <dbl>   <dbl>   <dbl>
 1 Dan   Yang        1 Dan Yang  Asian or Paci…   0.848    2.09    2.55   0.773
 2 Hong  Pham        0 Hong Pham Asian or Paci…   0.826    1.94    2.28   0.465

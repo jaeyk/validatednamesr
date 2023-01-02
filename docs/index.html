@@ -65,12 +65,12 @@
 <div class="section level2">
 <h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
-<p>Researchers have used names to signal race in various types of experimental tasks (e.g., survey experiments, conjoint experiments, and correspondence experiments).</p>
+<p>Researchers have used names to signal race in various experimental tasks (e.g., survey, conjoint, and correspondence experiments).</p>
 <p>In so doing, researchers need to take at least the following three factors into consideration:</p>
 <ol style="list-style-type: decimal">
 <li><p>Select names that vary across race but are constant across other perceived attributes or names that vary across race and other perceived attributes.</p></li>
 <li><p>Use not just one but several names to increase reliability.</p></li>
-<li><p>Use names that signal differences in citizenship, education, and income both within and across races to explore.</p></li>
+<li><p>Use names that signal differences in citizenship, education, and income within and across races to explore.</p></li>
 </ol>
 <p>This R package provides functions to perform each task based on the validated <strong>600</strong> names (white: 100, Asian: 300, black: 100, Hispanic: 100) datasets forthcoming in <em>Nature Scientific Data</em> (Crabtree, Kim, Gaddis, Holbein, Guage, and Marx 2023). It helps researchers to choose names in an experimental study consistent with their research objectives and underlying assumptions.</p>
 </div>
@@ -85,11 +85,11 @@
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <div class="section level3">
-<h3 id="viewing-and-loading-datasets">Viewing and loading datasets<a class="anchor" aria-label="anchor" href="#viewing-and-loading-datasets"></a>
+<h3 id="view-and-load-datasets">View and load datasets<a class="anchor" aria-label="anchor" href="#view-and-load-datasets"></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>
-<code><a href="reference/view_data.html">view_data()</a></code>: This function views the dataset’s filename, type, and notes (meta data).</li>
+<code><a href="reference/view_data.html">view_data()</a></code>: This function views the dataset’s filename, type, and notes (metadata).</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view_data</span>()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -106,22 +106,39 @@
 <pre class="{r}"><code><span><span class="co"># The following two commands will provide the same output.</span></span>
 <span></span>
 <span><span class="co">#file name</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_data.html">load_data</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"names.rds"</span><span class="op">)</span></span>
+<span><span class="va">raw_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_data.html">load_data</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"names.rds"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># file note </span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_data.html">load_data</a></span><span class="op">(</span><span class="va">file_note</span> <span class="op">==</span> <span class="st">"Raw names"</span><span class="op">)</span></span></code></pre>
+<span><span class="va">raw_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_data.html">load_data</a></span><span class="op">(</span><span class="va">file_note</span> <span class="op">==</span> <span class="st">"Raw names"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level3">
-<h3 id="select-names-in-conjunction-with-other-perceived-attributes">Select names in conjunction with other perceived attributes<a class="anchor" aria-label="anchor" href="#select-names-in-conjunction-with-other-perceived-attributes"></a>
+<h3 id="select-names">Select names<a class="anchor" aria-label="anchor" href="#select-names"></a>
 </h3>
-</div>
-<div class="section level3">
-<h3 id="select-many-names">Select many names<a class="anchor" aria-label="anchor" href="#select-many-names"></a>
-</h3>
-</div>
-<div class="section level3">
-<h3 id="select">Select<a class="anchor" aria-label="anchor" href="#select"></a>
-</h3>
+<p><code><a href="reference/select_names.html">select_names()</a></code> function helps to choose the validated names intended to signal a particular race using the <code>race</code> argument. The options available for this argument are: <code>Asian,</code> <code>Black,</code> <code>Hispanic,</code> <code>White.</code></p>
+<p>The output’s datatype is a dataframe and it has nine columns: <code>first</code> (first name), <code>last</code> = last name, <code>w.asian</code> = westernized Asian name (1 = yes, 0 = no), <code>name</code> (full name), <code>identity</code> (the name’s intended race), <code>pct_correct</code> = the percentage of the name’s intended race correctly perceived (0-1), <code>avg_income</code> = average perceived income level (1-5), <code>avg_education</code> = average perceived education level (1-5), <code>avg_citizenship_guess</code> = the percentage of perceived citizenship status (0-1).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>asian_names <span class="ot">&lt;-</span> <span class="fu">select_names</span>(<span class="at">race =</span> <span class="st">"Asian"</span>) <span class="co"># Asian signalling names </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>asian_names </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  first last  w.asian name      identity       pct_correct avg_income avg_education avg_citizenship_guess</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>fct<span class="sc">&gt;</span>            <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Dan   Yang        <span class="dv">1</span> Dan Yang  Asian or Paci…   <span class="fl">0.848</span>    <span class="fl">2.09</span>    <span class="fl">2.55</span>   <span class="fl">0.773</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Hong  Pham        <span class="dv">0</span> Hong Pham Asian or Paci…   <span class="fl">0.826</span>    <span class="fl">1.94</span>    <span class="fl">2.28</span>   <span class="fl">0.465</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> May   Chen        <span class="dv">1</span> May Chen  Asian or Paci…   <span class="fl">0.878</span>    <span class="fl">2.07</span>    <span class="fl">2.37</span>   <span class="fl">0.789</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Hong  Le          <span class="dv">0</span> Hong Le   Asian or Paci…   <span class="fl">0.816</span>    <span class="fl">1.97</span>    <span class="fl">2.42</span>   <span class="fl">0.539</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Wei   Le          <span class="dv">0</span> Wei Le    Asian or Paci…   <span class="fl">0.806</span>    <span class="fl">1.93</span>    <span class="fl">2.18</span>   <span class="fl">0.418</span></span></code></pre></div>
+<p>You can change the threshold level of the names to be correctly perceived using the <code>pct_correct_thres</code> argument. The default value for this argument is <code>0.8.</code></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">high_thres_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, pct_correct_thres <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code></pre></div>
+<p>You can also change the number of the names to be selected using the <code>n_names</code> argument. The default value for this argument is <code>5.</code> These names are selected randomly.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">greater_n_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, n_names <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<p>It’s possible to select the names using ordering rather than random sampling. To do so, you need to select what variable you need to use to order the observations (i.e., names). The argument for this feature is called <code>order_by_var</code> and the values available for it are: <code>pct_correct</code> = the percentage of the name’s intended race correctly perceived, <code>avg_income</code> = average perceived income level, <code>avg_education</code> = average perceived education level, and <code>avg_citizenship_guess</code> = the percentage of perceived citizenship status.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">top_correct_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, order_by <span class="op">=</span> <span class="st">"pct_correct"</span><span class="op">)</span></span></code></pre></div>
+<p>Finally, if you would like to select the names from all racial groups, use <code>select_nams_all()</code> instead of <code>select_names().</code> <code><a href="reference/select_names_all.html">select_names_all()</a></code> does not have the <code>race</code> argument. The other arguments are identical.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">all_race_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names_all.html">select_names_all</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
