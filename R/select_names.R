@@ -1,10 +1,11 @@
 #' Select names 
 #' 
-#' @param race The race intended to be signaled by the names. The value should be either "Asian," "Hispanic," "Black," or "White." 
-#' @param pct_correct_thres The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8
-#' @param n_names The number of the names to be selected. The list is ordered by pct_correct. The default number is 5.
+#' @param race Character. The race intended to be signaled by the names. The value should be either "Asian," "Hispanic," "Black," or "White." 
+#' @param pct_correct_thres Numeric. The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8
+#' @param order_by_var Character. The variable to be used to order the list of the names to be extracted. The default variable is NULL (non-selected). In this case, the names will be chosen randomly. The other options are pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, and avg_citizenship_guess = the percentage of perceived citizenship status.
+#' @param n_names Numeric. The number of the names to be selected. The default number is 5.
 #' @return The dataset that contains the list of the selected names. first = first name, last = last name, w.asian = westernized Asian name (1 = yes, 0 = no), name (full name), identity (the name's intended race), 
-#' pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_edu = average perceived education level, avg_citizenship_guess = the percentage of perceived citizenship status 
+#' pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, avg_citizenship_guess = the percentage of perceived citizenship status 
 #' 
 #' @importFrom dplyr group_by
 #' @importFrom dplyr ungroup
@@ -16,10 +17,11 @@
 #' @importFrom dplyr left_join
 #' @importFrom stringr str_detect
 #' @importFrom dplyr slice_max
+#' @importFrom dplyr slice_sample
 #' @export
 #' 
 
-select_names <- function(race, pct_correct_thres = 0.8, n_names = 5) {
+select_names <- function(race, pct_correct_thres = 0.8, order_by_var = NULL, n_names = 5) {
   
   if (is.null(race)) {
     
@@ -49,13 +51,25 @@ select_names <- function(race, pct_correct_thres = 0.8, n_names = 5) {
     left_join(name_pct_correct) %>%
     left_join(name_covariates)
   
-  out <- df %>%
-    filter(str_detect(identity, race)) %>% # race
-    filter(pct_correct >= pct_correct_thres) %>% # pct_correct_thres
-    ungroup() %>%
-    slice_max(pct_correct, 
-              n = n_names) # n_names
+  if (is.null(order_by_var)) {
+  
+    out <- df %>%
+      filter(str_detect(identity, race)) %>% # race
+      filter(pct_correct >= pct_correct_thres) %>% # pct_correct_thres
+      ungroup() %>%
+      slice_sample(n = n_names)
+    
+  } else {
+  
+    out <- df %>%
+      filter(str_detect(identity, race)) %>% # race
+      filter(pct_correct >= pct_correct_thres) %>%
+      ungroup() %>%
+      slice_max(get(order_by_var), 
+                n = n_names) # n_names
 
+  }
+  
   return(out)
   
   }

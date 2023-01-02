@@ -21,6 +21,7 @@ Imports:
     dataverse,
     dplyr,
     magrittr,
+    purrr,
     readr,
     stringr
 LazyData: true
