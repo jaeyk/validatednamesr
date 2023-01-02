@@ -3,18 +3,18 @@
 Authors: [Jae Yeon Kim](https://jaeyk.github.io/) and [Charles Crabtree](https://charlescrabtree.com/)
 
 ## Summary 
-
+    
 Researchers have used names to signal race in various types of experimental tasks (e.g., survey experiments, conjoint experiments, and correspondence experiments). 
 
 In so doing, researchers need to take at least the following three factors into consideration: 
 
-    1. Select names that vary across race but are constant across other perceived attributes or names that vary across race and other perceived attributes. 
+1. Select names that vary across race but are constant across other perceived attributes or names that vary across race and other perceived attributes. 
 
-    2. Use not just one but several names to increase reliability. 
+2. Use not just one but several names to increase reliability. 
 
-    3. Use names that signal differences in citizenship, education, and income both within and across races to explore.
-    
-This R package accompanies the validated names datasets forthcoming in *Nature Scientific Data*. It helps researchers to choose the names in consistent with their research objectives and underlying assumptions.
+3. Use names that signal differences in citizenship, education, and income both within and across races to explore.
+
+This R package provides functions to perform each task based on the validated names datasets forthcoming in *Nature Scientific Data* (Crabtree, Kim, Gaddis, Holbein, Guage, and Marx 2023). It helps researchers to choose names in an experimental study consistent with their research objectives and underlying assumptions.
 
 ## Installation 
 
