@@ -14,7 +14,7 @@ In so doing, researchers need to take at least the following three factors into 
 
 3. Use names that signal differences in citizenship, education, and income both within and across races to explore.
 
-This R package provides functions to perform each task based on the validated names datasets forthcoming in *Nature Scientific Data* (Crabtree, Kim, Gaddis, Holbein, Guage, and Marx 2023). It helps researchers to choose names in an experimental study consistent with their research objectives and underlying assumptions.
+This R package provides functions to perform each task based on the validated **600** names (white: 100, Asian: 300, black: 100, Hispanic: 100) datasets forthcoming in *Nature Scientific Data* (Crabtree, Kim, Gaddis, Holbein, Guage, and Marx 2023). It helps researchers to choose names in an experimental study consistent with their research objectives and underlying assumptions.
 
 ## Installation 
 
