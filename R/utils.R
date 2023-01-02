@@ -17,26 +17,33 @@ view_data <- function(name_type = NULL, name_target = NULL) {
   Sys.setenv("DATAVERSE_SERVER" = "dataverse.harvard.edu")
   
   # Load the pooled dataset 
-  dataset <- dataverse::get_dataset("https://doi.org/10.7910/DVN/JVCUQM")
+  dataset <- dataverse::get_dataset("https://doi.org/10.7910/DVN/LP4EAR")
   
   # Pull the filenames 
   filenames <- dataset$files$filename
   
-  # Original dataset 
-  original <- c(filenames[5], filenames[stringr::str_detect(filenames, "study")]) 
-  
-  # Validated dataset 
-  validated <- setdiff(filenames, original)
+  # Names 
+  names <- filenames[2]
+
+  # Survey results 
+  studies <- filenames[c(7,9,11)]
+
+  ## Pooled data 
+  pooled <- filenames[4]
   
   # Add meta data 
-  meta <- data.frame(filename = c(original, validated),
-                     type = c(rep("Original", length(original)),
-                              rep("Validated", length(validated))),
-                     notes = c("Raw names", "Pooled study results", "Study 1 result",
-                               "Study 2 result", "Study 3 result",
-                               "Within group assessment", "Non-white and white assessment",
-                               "White and non-white assessment", "General perception",
-                               "Equivalance assessment"))
+  meta <- data.frame(
+    filename = c(names, studies, pooled),
+                     
+    type = c(rep("Names", length(names)),
+            rep("Studies", length(studies)),
+            "Pooled"),
+    
+    notes = c("Raw names", 
+            "Study 1 result",
+            "Study 2 result", 
+            "Study 3 result",
+            "Pooled"))
   
   if (is.null(name_type) & is.null(name_target))
     return(meta)
@@ -45,8 +52,8 @@ view_data <- function(name_type = NULL, name_target = NULL) {
 
 #' Load the data from the Harvard Dataverse 
 #' 
-#' @param file_name The exact file name for a particular dataset.One can find this information usign `view_data().`
-#' @param file_note The exact note for a particular dataset. One can find this information using `view_data().` 
+#' @param file_name The exact file name for a particular dataset. Please use `view_data()` to find this information.
+#' @param file_note The exact note for a particular dataset. Please use `view_data()` to find this information. 
 #' 
 #' @return df A particular dataset 
 #' 
@@ -61,7 +68,7 @@ load_data <- function(file_name = NULL, file_note = NULL) {
   
   if (is.null(file_name) & is.null(file_note)) {
     
-    stop("provide a non-NULL value for either file_name, file_type or file_note.")
+    stop("Provide a non-NULL value for either file_name, file_type or file_note.")
     
   }
   
@@ -75,7 +82,7 @@ load_data <- function(file_name = NULL, file_note = NULL) {
   # Get the specific dataset
   df <- dataverse::get_dataframe_by_name(
     filename = meta$filename,
-    dataset = "https://doi.org/10.7910/DVN/JVCUQM",
+    dataset = "https://doi.org/10.7910/DVN/LP4EAR",
     original = T,
     .f = readr::read_rds)
   

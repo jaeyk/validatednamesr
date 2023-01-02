@@ -13,21 +13,20 @@ devtools::install_github("jaeyk/validatednamesr",
 
 ## Usage 
 
-1. `view_data()`: This function views the dataset's filename, type, and notes. 
+1. `view_data()`: This function views the dataset's filename, type, and notes (meta data). 
 
 ```r
-view_data() %>% head()
+view_data()
 
-                  filename      type                   notes
-1                names.rds  Original               Raw names
-2             study123.rds  Original    Pooled study results
-3        study-1-names.rds  Original          Study 1 result
-4        study-2-names.rds  Original          Study 2 result
-5        study-3-names.rds  Original          Study 3 result
-6 hq_group_group_names.rds Validated Within group assessment
+           filename    type          notes
+1         names.rds   Names      Raw names
+2 study-1-names.rds Studies Study 1 result
+3 study-2-names.rds Studies Study 2 result
+4 study-3-names.rds Studies Study 3 result
+5      study123.rds  Pooled  Pooled result
 ````
 
-2. `load_data()`: This function loads a particualr dataset. Use either `file_name` or `file_note` argument.
+2. `load_data()`: This function loads a particular dataset. Use either `file_name` or `file_note` argument.
 
 ```{r}
 # The following two commands will provide the same output.
