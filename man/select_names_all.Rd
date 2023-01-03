@@ -4,10 +4,10 @@
 \alias{select_names_all}
 \title{Select names from all races}
 \usage{
-select_names_all(pct_correct_thres = 0.8, order_by_var = NULL, n_names = 5)
+select_names_all(pct_correct = 0.8, order_by_var = NULL, n_names = 5)
 }
 \arguments{
-\item{pct_correct_thres}{The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8}
+\item{pct_correct}{The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8}
 
 \item{order_by_var}{The variable to be used to order the list of the names to be extracted. The default variable is NULL (non-selected). The other options are pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, and avg_citizenship_guess = the percentage of perceived citizenship status}
 

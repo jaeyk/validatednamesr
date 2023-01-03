@@ -4,12 +4,12 @@
 \alias{select_names}
 \title{Select names}
 \usage{
-select_names(race, pct_correct_thres = 0.8, order_by_var = NULL, n_names = 5)
+select_names(race, pct_correct = 0.8, order_by_var = NULL, n_names = 5)
 }
 \arguments{
 \item{race}{Character. The race intended to be signaled by the names. The value should be either "Asian," "Hispanic," "Black," or "White."}
 
-\item{pct_correct_thres}{Numeric. The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8}
+\item{pct_correct}{Numeric. The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8}
 
 \item{order_by_var}{Character. The variable to be used to order the list of the names to be extracted. The default variable is NULL (non-selected). In this case, the names will be chosen randomly. The other options are pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, and avg_citizenship_guess = the percentage of perceived citizenship status.}
 

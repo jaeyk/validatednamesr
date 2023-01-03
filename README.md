@@ -19,8 +19,7 @@ This R package provides functions to perform each task based on the validated **
 ## Installation 
 
 ```r
-devtools::install_github("jaeyk/validatednamesr",
-                          dependencies = TRUE)
+devtools::install_github("jaeyk/validatednamesr", dependencies = TRUE)
 ```
 
 ## Usage 
@@ -56,14 +55,14 @@ raw_names <- load_data(file_note == "Raw names")
 
 `select_names()` function helps to choose the validated names intended to signal a particular race using the `race` argument. The options available for this argument are: `Asian,` `Black,` `Hispanic,` `White.`
 
-The output's datatype is a dataframe and it has nine columns: `first` (first name), `last` = last name, `w.asian` = westernized Asian name (1 = yes, 0 = no), `name` (full name), `identity` (the name's intended race), `pct_correct` = the percentage of the name's intended race correctly perceived (0-1), `avg_income` = average perceived income level (1-5), `avg_education` = average perceived education level (1-5), `avg_citizenship_guess` = the percentage of perceived citizenship status (0-1).
+The output's datatype is a dataframe and it has nine columns: `first` (first name), `last` = last name, `w.asian` = westernized Asian name (1 = yes, 0 = no), `name` (full name), `identity` (the name's intended race), `mean_correct` = the percentage of the name's intended race correctly perceived (0-1), `avg_income` = average perceived income level (1-5), `avg_education` = average perceived education level (1-5), `avg_citizenship_guess` = the percentage of perceived citizenship status (0-1).
 
 ```r
 asian_names <- select_names(race = "Asian") # Asian signalling names 
 
 asian_names 
 
-  first last  w.asian name      identity       pct_correct avg_income avg_education avg_citizenship_guess
+  first last  w.asian name      identity       mean_correct avg_income avg_education avg_citizenship_guess
   <chr> <chr>   <dbl> <chr>     <fct>            <dbl>   <dbl>   <dbl>   <dbl>
 1 Dan   Yang        1 Dan Yang  Asian or Paci…   0.848    2.09    2.55   0.773
 2 Hong  Pham        0 Hong Pham Asian or Paci…   0.826    1.94    2.28   0.465
@@ -72,10 +71,10 @@ asian_names
 5 Wei   Le          0 Wei Le    Asian or Paci…   0.806    1.93    2.18   0.418
 ```
 
-You can change the threshold level of the names to be correctly perceived using the `pct_correct_thres` argument. The default value for this argument is `0.8.`
+You can change the threshold level of the names to be correctly perceived using the `pct_correct` argument. The default value for this argument is `0.8.`
 
 ```r
-high_thres_names <- select_names(race = "Asian", pct_correct_thres = 0.7)
+high_thres_names <- select_names(race = "Asian", pct_correct = 0.7)
 ```
 
 You can also change the number of the names to be selected using the `n_names` argument. The default value for this argument is `5.` These names are selected randomly.  

@@ -1,7 +1,7 @@
 #' Select names 
 #' 
 #' @param race Character. The race intended to be signaled by the names. The value should be either "Asian," "Hispanic," "Black," or "White." 
-#' @param pct_correct_thres Numeric. The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8
+#' @param pct_correct Numeric. The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8
 #' @param order_by_var Character. The variable to be used to order the list of the names to be extracted. The default variable is NULL (non-selected). In this case, the names will be chosen randomly. The other options are pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, and avg_citizenship_guess = the percentage of perceived citizenship status.
 #' @param n_names Numeric. The number of the names to be selected. The default number is 5.
 #' @return The dataset that contains the list of the selected names. first = first name, last = last name, w.asian = westernized Asian name (1 = yes, 0 = no), name (full name), identity (the name's intended race), 
@@ -21,7 +21,7 @@
 #' @export
 #' 
 
-select_names <- function(race, pct_correct_thres = 0.8, order_by_var = NULL, n_names = 5) {
+select_names <- function(race, pct_correct = 0.8, order_by_var = NULL, n_names = 5) {
   
   if (is.null(race)) {
     
@@ -36,7 +36,7 @@ select_names <- function(race, pct_correct_thres = 0.8, order_by_var = NULL, n_n
   # Pct correctness 
   name_pct_correct <- pooled %>%
     group_by(name) %>%
-    summarize(pct_correct = mean(correct))
+    summarize(mean_correct = mean(correct))
 
   # Covariates 
   name_covariates <- pooled %>%
@@ -55,7 +55,7 @@ select_names <- function(race, pct_correct_thres = 0.8, order_by_var = NULL, n_n
   
     out <- df %>%
       filter(str_detect(identity, race)) %>% # race
-      filter(pct_correct >= pct_correct_thres) %>% # pct_correct_thres
+      filter(mean_correct >= pct_correct) %>% # pct_correct
       ungroup() %>%
       slice_sample(n = n_names)
     
@@ -63,7 +63,7 @@ select_names <- function(race, pct_correct_thres = 0.8, order_by_var = NULL, n_n
   
     out <- df %>%
       filter(str_detect(identity, race)) %>% # race
-      filter(pct_correct >= pct_correct_thres) %>%
+      filter(mean_correct >= pct_correct) %>%
       ungroup() %>%
       slice_max(get(order_by_var), 
                 n = n_names) # n_names
