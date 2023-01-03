@@ -39,7 +39,7 @@ view_data()
 5      study123.rds  Pooled  Pooled result
 ````
 
-2. `load_data()`: This function loads a particular dataset. Use either `file_name` or `file_note` argument.
+2. `load_data()`: This function loads a particular dataset. Use either the `file_name` or `file_note` argument.
 
 ```{r}
 # The following two commands will provide the same output.
@@ -53,9 +53,9 @@ raw_names <- load_data(file_note == "Raw names")
 
 ### Select names 
 
-`select_names()` function helps to choose the validated names intended to signal a particular race using the `race` argument. The options available for this argument are: `Asian,` `Black,` `Hispanic,` `White.`
+The `select_names()` function helps to choose the validated names intended to signal a particular race using the `race` argument. The options available for this argument are: `Asian,` `Black,` `Hispanic,` `White.`
 
-The output's datatype is a dataframe and it has nine columns: `first` (first name), `last` = last name, `w.asian` = westernized Asian name (1 = yes, 0 = no), `name` (full name), `identity` (the name's intended race), `mean_correct` = the percentage of the name's intended race correctly perceived (0-1), `avg_income` = average perceived income level (1-5), `avg_education` = average perceived education level (1-5), `avg_citizenship_guess` = the percentage of perceived citizenship status (0-1).
+The output's datatype is a dataframe, and it has nine columns: `first` (first name), `last` = last name, `w.asian` = westernized Asian name (1 = yes, 0 = no), `name` (full name), `identity` (the name's intended race), `mean_correct` = the percentage of the name's intended race correctly perceived (0-1), `avg_income` = average perceived income level (1-5), `avg_education` = average perceived education level (1-5), `avg_citizenship_guess` = the percentage of perceived citizenship status (0-1).
 
 ```r
 asian_names <- select_names(race = "Asian") # Asian signalling names 
@@ -77,19 +77,19 @@ You can change the threshold level of the names to be correctly perceived using 
 high_thres_names <- select_names(race = "Asian", pct_correct = 0.7)
 ```
 
-You can also change the number of the names to be selected using the `n_names` argument. The default value for this argument is `5.` These names are selected randomly.  
+You can also change the number of the names to be selected using the `n_names` argument. The default value for this argument is `5.` These names will be selected randomly.  
 
 ```r
 greater_n_names <- select_names(race = "Asian", n_names = 10)
 ```
 
-It's possible to select the names using ordering rather than random sampling. To do so, you need to select what variable you need to use to order the observations (i.e., names). The argument for this feature is called `order_by_var` and the values available for it are: `pct_correct` = the percentage of the name's intended race correctly perceived, `avg_income` = average perceived income level, `avg_education` = average perceived education level, and `avg_citizenship_guess` = the percentage of perceived citizenship status. 
+It's possible to select the names using ordering rather than random sampling. To do so, you need to select what variable you need to use to order the observations (i.e., names). The argument for this feature is called `order_by_var.` The values available for it are: `pct_correct` = the percentage of the name's intended race correctly perceived, `avg_income` = average perceived income level, `avg_education` = average perceived education level, and `avg_citizenship_guess` = the percentage of perceived citizenship status. 
 
 ```r
 top_correct_names <- select_names(race = "Asian", order_by = "pct_correct")
 ```
 
-Finally, if you would like to select the names from all racial groups, use `select_nams_all()` instead of `select_names().` `select_names_all()` does not have the `race` argument. The other arguments are identical. 
+Finally, if you would like to select the names from all racial groups, use `select_nams_all()` instead of `select_names().` Note that `select_names_all()` does not have the `race` argument. The other arguments are identical. 
 
 ```r
 all_race_names <- select_names_all()
