@@ -31,12 +31,12 @@ devtools::install_github("jaeyk/validatednamesr", dependencies = TRUE)
 ``` r
 view_data()
 
-           filename    type          notes
-1         names.rds   Names      Raw names
-2 study-1-names.rds Studies Study 1 result
-3 study-2-names.rds Studies Study 2 result
-4 study-3-names.rds Studies Study 3 result
-5      study123.rds  Pooled  Pooled result
+#>            filename    type          notes
+#> 1         names.rds   Names      Raw names
+#> 2 study-1-names.rds Studies Study 1 result
+#> 3 study-2-names.rds Studies Study 2 result
+#> 4 study-3-names.rds Studies Study 3 result
+#> 5      study123.rds  Pooled  Pooled result
 ````
 
 2. `load_data()`: This function loads a particular dataset. Use either the `file_name` or `file_note` argument.
