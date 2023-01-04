@@ -8,11 +8,11 @@ Researchers have used names to signal race in various experimental tasks (e.g., 
 
 In so doing, researchers need to take at least the following three factors into consideration: 
 
-1. Select names that vary across race but are constant across other perceived attributes or names that vary across race and other perceived attributes. 
+> 1. Select names that vary across race but are constant across other perceived attributes or names that vary across race and other perceived attributes. 
 
-2. Use not just one but several names to increase reliability. 
+> 2. Use not just one but several names to increase reliability. 
 
-3. Use names that signal differences in citizenship, education, and income within and across races to explore.
+> 3. Use names that signal differences in citizenship, education, and income within and across races to explore.
 
 This R package provides functions to perform each task based on the validated **600** names (white: 100, Asian: 300, black: 100, Hispanic: 100) datasets forthcoming in *Nature Scientific Data* (Crabtree, Kim, Gaddis, Holbein, Guage, and Marx 2023). It helps researchers to choose names in an experimental study consistent with their research objectives and underlying assumptions.
 
@@ -97,7 +97,7 @@ all_race_names <- select_names_all()
 
 ## How to cite
 
-```{r}
+```r
 
 Kim, J and Crabtree, C. (2022). validatednamesr: R package for viewing, loading, and visualizing the Validated Names for Experimental Studies on Race and Ethnicity datasets. 
 
