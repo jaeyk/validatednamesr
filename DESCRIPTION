@@ -1,7 +1,7 @@
 Package: validatednamesr
-Title: An R package for viewing, loading, and extracting the Validated Names for Experimental Studies on Race and Ethnicity datasets
+Title: An R package for viewing, loading, and extracting the validated names for experimental studies on race and ethnicity datasets
 Description: A convenient tool for working validatd names for for experimental studies on race and ethnicity datasets.
-Version: 0.0.1
+Version: 1.0.0
 Authors@R:
   c(person(given = "Jae Yeon", 
            family = "Kim", 
