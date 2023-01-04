@@ -67,21 +67,17 @@
 </h2>
 <p>Researchers have used names to signal race in various experimental tasks (e.g., survey, conjoint, and correspondence experiments).</p>
 <p>In so doing, researchers need to take at least the following three factors into consideration:</p>
-<blockquote>
-<ol style="list-style-type: decimal">
+<ul>
+<li><ol style="list-style-type: decimal">
 <li>Select names that vary across race but are constant across other perceived attributes or names that vary across race and other perceived attributes.</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2" style="list-style-type: decimal">
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
 <li>Use not just one but several names to increase reliability.</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3" style="list-style-type: decimal">
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
 <li>Use names that signal differences in citizenship, education, and income within and across races to explore.</li>
-</ol>
-</blockquote>
+</ol></li>
+</ul>
 <p>This R package provides functions to perform each task based on the validated <strong>600</strong> names (white: 100, Asian: 300, black: 100, Hispanic: 100) datasets forthcoming in <em>Nature Scientific Data</em> (Crabtree, Kim, Gaddis, Holbein, Guage, and Marx 2023). It helps researchers to choose names in an experimental study consistent with their research objectives and underlying assumptions.</p>
 </div>
 <div class="section level2">
@@ -125,17 +121,18 @@
 </h3>
 <p>The <code><a href="reference/select_names.html">select_names()</a></code> function helps to choose the validated names intended to signal a particular race using the <code>race</code> argument. The options available for this argument are: <code>Asian,</code> <code>Black,</code> <code>Hispanic,</code> <code>White.</code></p>
 <p>The output’s datatype is a dataframe, and it has nine columns: <code>first</code> (first name), <code>last</code> = last name, <code>w.asian</code> = westernized Asian name (1 = yes, 0 = no), <code>name</code> (full name), <code>identity</code> (the name’s intended race), <code>mean_correct</code> = the percentage of the name’s intended race correctly perceived (0-1), <code>avg_income</code> = average perceived income level (1-5), <code>avg_education</code> = average perceived education level (1-5), <code>avg_citizenship_guess</code> = the percentage of perceived citizenship status (0-1).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>asian_names <span class="ot">&lt;-</span> <span class="fu">select_names</span>(<span class="at">race =</span> <span class="st">"Asian"</span>) <span class="co"># Asian signalling names </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>asian_names </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  first last  w.asian name      identity       mean_correct avg_income avg_education avg_citizenship_guess</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>     <span class="er">&lt;</span>fct<span class="sc">&gt;</span>            <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>   <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Dan   Yang        <span class="dv">1</span> Dan Yang  Asian or Paci…   <span class="fl">0.848</span>    <span class="fl">2.09</span>    <span class="fl">2.55</span>   <span class="fl">0.773</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Hong  Pham        <span class="dv">0</span> Hong Pham Asian or Paci…   <span class="fl">0.826</span>    <span class="fl">1.94</span>    <span class="fl">2.28</span>   <span class="fl">0.465</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> May   Chen        <span class="dv">1</span> May Chen  Asian or Paci…   <span class="fl">0.878</span>    <span class="fl">2.07</span>    <span class="fl">2.37</span>   <span class="fl">0.789</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Hong  Le          <span class="dv">0</span> Hong Le   Asian or Paci…   <span class="fl">0.816</span>    <span class="fl">1.97</span>    <span class="fl">2.42</span>   <span class="fl">0.539</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Wei   Le          <span class="dv">0</span> Wei Le    Asian or Paci…   <span class="fl">0.806</span>    <span class="fl">1.93</span>    <span class="fl">2.18</span>   <span class="fl">0.418</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">asian_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span><span class="op">)</span> <span class="co"># Asian signalling names </span></span>
+<span></span>
+<span><span class="va">asian_names</span> </span>
+<span></span>
+<span><span class="co">#&gt;   first last  w.asian name      identity       mean_correct avg_income avg_education avg_citizenship_guess</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;fct&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Dan   Yang        1 Dan Yang  Asian or Paci…   0.848    2.09    2.55   0.773</span></span>
+<span><span class="co">#&gt; 2 Hong  Pham        0 Hong Pham Asian or Paci…   0.826    1.94    2.28   0.465</span></span>
+<span><span class="co">#&gt; 3 May   Chen        1 May Chen  Asian or Paci…   0.878    2.07    2.37   0.789</span></span>
+<span><span class="co">#&gt; 4 Hong  Le          0 Hong Le   Asian or Paci…   0.816    1.97    2.42   0.539</span></span>
+<span><span class="co">#&gt; 5 Wei   Le          0 Wei Le    Asian or Paci…   0.806    1.93    2.18   0.418</span></span></code></pre></div>
 <p>You can change the threshold level of the names to be correctly perceived using the <code>pct_correct</code> argument. The default value for this argument is <code>0.8.</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">high_thres_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, pct_correct <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code></pre></div>
@@ -153,8 +150,7 @@
 <div class="section level2">
 <h2 id="how-to-cite">How to cite<a class="anchor" aria-label="anchor" href="#how-to-cite"></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Kim, J and Crabtree, <span class="fu">C.</span> (<span class="dv">2022</span>). validatednamesr<span class="sc">:</span> R package <span class="cf">for</span> viewing, loading, and visualizing the Validated Names <span class="cf">for</span> Experimental Studies on Race and Ethnicity datasets. </span></code></pre></div>
+<p>Kim, J and Crabtree, C. (2022). validatednamesr: R package for viewing, loading, and visualizing the Validated Names for Experimental Studies on Race and Ethnicity datasets.</p>
 </div>
 </div>
   </div>
