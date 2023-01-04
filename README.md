@@ -41,14 +41,14 @@ view_data()
 
 2. `load_data()`: This function loads a particular dataset. Use either the `file_name` or `file_note` argument.
 
-```{r}
+``` r
 # The following two commands will provide the same output.
 
 #file name
 raw_names <- load_data(file_name = "names.rds")
 
 # file note 
-raw_names <- load_data(file_note == "Raw names")
+raw_names <- load_data(file_note = "Raw names")
 ```
 
 ### Select names 
@@ -74,12 +74,16 @@ asian_names
 You can change the threshold level of the names to be correctly perceived using the `pct_correct` argument. The default value for this argument is `0.8.`
 
 ``` r
+# change the threshold level of the names to be correctly perceived from 0.8 (the default value) to 0.7
+
 high_thres_names <- select_names(race = "Asian", pct_correct = 0.7)
 ```
 
 You can also change the number of the names to be selected using the `n_names` argument. The default value for this argument is `5.` These names will be selected randomly.  
 
 ``` r
+# change the number of the names to be selected from 5 (the default value) to 10 
+
 greater_n_names <- select_names(race = "Asian", n_names = 10)
 ```
 

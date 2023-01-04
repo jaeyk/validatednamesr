@@ -109,13 +109,14 @@
 <li>
 <code><a href="reference/load_data.html">load_data()</a></code>: This function loads a particular dataset. Use either the <code>file_name</code> or <code>file_note</code> argument.</li>
 </ol>
-<pre class="{r}"><code><span><span class="co"># The following two commands will provide the same output.</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># The following two commands will provide the same output.</span></span>
 <span></span>
 <span><span class="co">#file name</span></span>
 <span><span class="va">raw_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_data.html">load_data</a></span><span class="op">(</span>file_name <span class="op">=</span> <span class="st">"names.rds"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># file note </span></span>
-<span><span class="va">raw_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_data.html">load_data</a></span><span class="op">(</span><span class="va">file_note</span> <span class="op">==</span> <span class="st">"Raw names"</span><span class="op">)</span></span></code></pre>
+<span><span class="va">raw_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_data.html">load_data</a></span><span class="op">(</span>file_note <span class="op">=</span> <span class="st">"Raw names"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="select-names">Select names<a class="anchor" aria-label="anchor" href="#select-names"></a>
@@ -136,10 +137,14 @@
 <span><span class="co">#&gt; 5 Wei   Le          0 Wei Le    Asian or Paci…   0.806    1.93    2.18   0.418</span></span></code></pre></div>
 <p>You can change the threshold level of the names to be correctly perceived using the <code>pct_correct</code> argument. The default value for this argument is <code>0.8.</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">high_thres_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, pct_correct <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># change the threshold level of the names to be correctly perceived from 0.8 (the default value) to 0.7</span></span>
+<span></span>
+<span><span class="va">high_thres_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, pct_correct <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span></code></pre></div>
 <p>You can also change the number of the names to be selected using the <code>n_names</code> argument. The default value for this argument is <code>5.</code> These names will be selected randomly.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">greater_n_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, n_names <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># change the number of the names to be selected from 5 (the default value) to 10 </span></span>
+<span></span>
+<span><span class="va">greater_n_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, n_names <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>It’s possible to select the names using ordering rather than random sampling. To do so, you need to select what variable you need to use to order the observations (i.e., names). The argument for this feature is called <code>order_by_var.</code> The values available for it are: <code>pct_correct</code> = the percentage of the name’s intended race correctly perceived, <code>avg_income</code> = average perceived income level, <code>avg_education</code> = average perceived education level, and <code>avg_citizenship_guess</code> = the percentage of perceived citizenship status.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">top_correct_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/select_names.html">select_names</a></span><span class="op">(</span>race <span class="op">=</span> <span class="st">"Asian"</span>, order_by <span class="op">=</span> <span class="st">"pct_correct"</span><span class="op">)</span></span></code></pre></div>
