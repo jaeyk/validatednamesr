@@ -55,14 +55,14 @@ raw_names <- load_data(file_note = "Raw names")
 
 The `select_names()` function helps to choose the validated names intended to signal a particular race using the `race` argument. The options available for this argument are: `Asian,` `Black,` `Hispanic,` `White.`
 
-The output's datatype is a dataframe, and it has nine columns: `first` (first name), `last` = last name, `w.asian` = westernized Asian name (1 = yes, 0 = no), `name` (full name), `identity` (the name's intended race), `mean_correct` = the percentage of the name's intended race correctly perceived (0-1), `avg_income` = average perceived income level (1-5), `avg_education` = average perceived education level (1-5), `avg_citizenship_guess` = the percentage of perceived citizenship status (0-1).
+The output's datatype is a dataframe, and it has nine columns: `first` (first name), `last` = last name, `w.asian` = westernized Asian name (1 = yes, 0 = no), `name` (full name), `identity` (the name's intended race), `mean_correct` = the percentage of the name's intended race correctly perceived (0-1), `avg_income` = average perceived income level (1-5), `avg_education` = average perceived education level (1-5), `avg_citizenship` = the percentage of perceived citizenship status (0-1).
 
 ``` r
 asian_names <- select_names(race = "Asian") # Asian signalling names 
 
 asian_names 
 
-#>   first last  w.asian name      identity       mean_correct avg_income avg_education avg_citizenship_guess
+#>   first last  w.asian name      identity       mean_correct avg_income avg_education avg_citizenship
 #>   <chr> <chr>   <dbl> <chr>     <fct>            <dbl>   <dbl>   <dbl>   <dbl>
 #> 1 Dan   Yang        1 Dan Yang  Asian or Paci…   0.848    2.09    2.55   0.773
 #> 2 Hong  Pham        0 Hong Pham Asian or Paci…   0.826    1.94    2.28   0.465
@@ -87,7 +87,7 @@ You can also change the number of the names to be selected using the `n_names` a
 greater_n_names <- select_names(race = "Asian", n_names = 10)
 ```
 
-It's possible to select the names using ordering rather than random sampling. To do so, you need to select what variable you need to use to order the observations (i.e., names). The argument for this feature is called `order_by_var.` The values available for it are: `pct_correct` = the percentage of the name's intended race correctly perceived, `avg_income` = average perceived income level, `avg_education` = average perceived education level, and `avg_citizenship_guess` = the percentage of perceived citizenship status. 
+It's possible to select the names using ordering rather than random sampling. To do so, you need to select what variable you need to use to order the observations (i.e., names). The argument for this feature is called `order_by_var.` The values available for it are: `pct_correct` = the percentage of the name's intended race correctly perceived, `avg_income` = average perceived income level, `avg_education` = average perceived education level, and `avg_citizenship` = the percentage of perceived citizenship status. 
 
 ``` r
 top_correct_names <- select_names(race = "Asian", order_by = "pct_correct")

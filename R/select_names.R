@@ -2,10 +2,10 @@
 #' 
 #' @param race Character. The race intended to be signaled by the names. The value should be either "Asian," "Hispanic," "Black," or "White." 
 #' @param pct_correct Numeric. The names' threshold rate of being correctly perceived as a particular race. The default value is 0.8
-#' @param order_by_var Character. The variable to be used to order the list of the names to be extracted. The default variable is NULL (non-selected). In this case, the names will be chosen randomly. The other options are pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, and avg_citizenship_guess = the percentage of perceived citizenship status.
+#' @param order_by_var Character. The variable to be used to order the list of the names to be extracted. The default variable is NULL (non-selected). In this case, the names will be chosen randomly. The other options are pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, and avg_citizenship = the percentage of perceived citizenship status.
 #' @param n_names Numeric. The number of the names to be selected. The default number is 5.
 #' @return The dataset that contains the list of the selected names. first = first name, last = last name, w.asian = westernized Asian name (1 = yes, 0 = no), name (full name), identity (the name's intended race), 
-#' pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, avg_citizenship_guess = the percentage of perceived citizenship status 
+#' pct_correct = the percentage of the name's intended race correctly perceived, avg_income = average perceived income level, avg_education = average perceived education level, avg_citizenship = the percentage of perceived citizenship status 
 #' 
 #' @importFrom dplyr group_by
 #' @importFrom dplyr ungroup
@@ -43,7 +43,7 @@ select_names <- function(race, pct_correct = 0.8, order_by_var = NULL, n_names =
     group_by(name) %>%
     summarize(avg_income = mean(income.ord, na.rm = T),
               avg_education = mean(education.ord, na.rm = T),
-              avg_citizenship_guess = mean(citizen, na.rm = T))
+              avg_citizenship = mean(citizen, na.rm = T))
   
   # Join names, pct correctness, and covariates
   df <- names %>%
