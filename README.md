@@ -4,17 +4,13 @@ Authors: [Jae Yeon Kim](https://jaeyk.github.io/) and [Charles Crabtree](https:/
 
 ## Summary 
     
-Researchers have used names to signal race in various experimental tasks (e.g., survey, conjoint, and correspondence experiments). 
+Researchers have used names to indicate race in various experimental tasks such as surveys, conjoint experiments, and correspondence experiments. When doing so, researchers must consider at least the following three factors:
 
-In so doing, researchers need to take at least the following three factors into consideration: 
+- Choose names that vary by race but remain constant across other perceived attributes, or choose names that vary by race and other perceived attributes.
+- Use not only one but several names to increase reliability.
+- Use names that indicate differences in citizenship, education, and income within and across races to explore.
 
--   1. Select names that vary across race but are constant across other perceived attributes or names that vary across race and other perceived attributes. 
-
--   2. Use not just one but several names to increase reliability. 
-
--   3. Use names that signal differences in citizenship, education, and income within and across races to explore.
-
-This R package provides functions to perform each task based on the validated **600** names (white: 100, Asian: 300, black: 100, Hispanic: 100) datasets forthcoming in *Nature Scientific Data* (Crabtree, Kim, Gaddis, Holbein, Guage, and Marx 2023). It helps researchers to choose names in an experimental study consistent with their research objectives and underlying assumptions.
+This R package provides functions to perform each task based on a validated dataset of 600 names (100 white, 300 Asian, 100 black, and 100 Hispanic) soon to be published in *Nature Scientific Data* (Crabtree, Kim, Gaddis, Holbein, Guage, and Marx, 2023). It helps researchers choose names in an experimental study that are consistent with their research objectives and underlying assumptions.
 
 ## Installation 
 
@@ -53,9 +49,9 @@ raw_names <- load_data(file_note = "Raw names")
 
 ### Select names 
 
-The `select_names()` function helps to choose the validated names intended to signal a particular race using the `race` argument. The options available for this argument are: `Asian,` `Black,` `Hispanic,` `White.`
+The `select_names()` function helps to choose the validated names that are intended to signal a particular race using the `race` argument. The options available for this argument are: `Asian,` `Black,` `Hispanic,` `White.`
 
-The output's datatype is a dataframe, and it has nine columns: `first` (first name), `last` = last name, `w.asian` = westernized Asian name (1 = yes, 0 = no), `name` (full name), `identity` (the name's intended race), `mean_correct` = the percentage of the name's intended race correctly perceived (0-1), `avg_income` = average perceived income level (1-5), `avg_education` = average perceived education level (1-5), `avg_citizenship` = the percentage of perceived citizenship status (0-1).
+The output of this data is a dataframe with nine columns: `first` (first name), `last` = last name, `w.asian` = westernized Asian name (1 = yes, 0 = no), `name` (full name), `identity` (the name's intended race), `mean_correct` = the percentage of the name's intended race correctly perceived (0-1), `avg_income` = average perceived income level (1-5), `avg_education` = average perceived education level (1-5), `avg_citizenship` = the percentage of perceived citizenship status (0-1).
 
 ``` r
 asian_names <- select_names(race = "Asian") # Asian signalling names 
@@ -87,13 +83,13 @@ You can also change the number of the names to be selected using the `n_names` a
 greater_n_names <- select_names(race = "Asian", n_names = 10)
 ```
 
-It's possible to select the names using ordering rather than random sampling. To do so, you need to select what variable you need to use to order the observations (i.e., names). The argument for this feature is called `order_by_var.` The values available for it are: `pct_correct` = the percentage of the name's intended race correctly perceived, `avg_income` = average perceived income level, `avg_education` = average perceived education level, and `avg_citizenship` = the percentage of perceived citizenship status. 
+Rather than using random sampling, it is possible to select names by ordering them according to a chosen variable. This is done by specifying the `order_by_var` argument. The values available for it are: `pct_correct` = the percentage of the name's intended race correctly perceived, `avg_income` = average perceived income level, `avg_education` = average perceived education level, and `avg_citizenship` = the percentage of perceived citizenship status. 
 
 ``` r
 top_correct_names <- select_names(race = "Asian", order_by = "pct_correct")
 ```
 
-Finally, if you would like to select the names from all racial groups, use `select_nams_all()` instead of `select_names().` Note that `select_names_all()` does not have the `race` argument. The other arguments are identical. 
+Finally, if you would like to select the names from all racial groups, use `select_nams_all()` instead of `select_names().` Note that `select_names_all()` does not have the `race` argument, but all the other arguments are identical. 
 
 ``` r
 all_race_names <- select_names_all()
