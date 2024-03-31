@@ -18,6 +18,7 @@
 #' @importFrom stringr str_detect
 #' @importFrom dplyr slice_max
 #' @importFrom dplyr slice_sample
+#' @importFrom dplyr rename
 #' @export
 #' 
 
@@ -37,7 +38,7 @@ select_names <- function(race, pct_correct = 0.8, order_by_var = NULL, n_names =
   name_pct_correct <- pooled %>%
     group_by(name) %>%
     summarize(mean_correct = mean(correct))
-
+  
   # Covariates 
   name_covariates <- pooled %>%
     group_by(name) %>%
@@ -49,7 +50,7 @@ select_names <- function(race, pct_correct = 0.8, order_by_var = NULL, n_names =
   df <- names %>%
     select(name, identity) %>%
     left_join(name_pct_correct) %>%
-    left_join(name_covariates)
+    left_join(name_covariates) 
   
   if (is.null(order_by_var)) {
   
@@ -57,7 +58,8 @@ select_names <- function(race, pct_correct = 0.8, order_by_var = NULL, n_names =
       filter(str_detect(identity, race)) %>% # race
       filter(mean_correct >= pct_correct) %>% # pct_correct
       ungroup() %>%
-      slice_sample(n = n_names)
+      slice_sample(n = n_names) %>%
+      rename(pct_correct = mean_correct)
     
   } else {
   
@@ -65,9 +67,10 @@ select_names <- function(race, pct_correct = 0.8, order_by_var = NULL, n_names =
       filter(str_detect(identity, race)) %>% # race
       filter(mean_correct >= pct_correct) %>%
       ungroup() %>%
+      rename(pct_correct = mean_correct) %>%
       slice_max(get(order_by_var), 
                 n = n_names) # n_names
-
+    
   }
   
   return(out)

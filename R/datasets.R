@@ -21,15 +21,17 @@ view_data <- function(name_type = NULL, name_target = NULL) {
   
   # Pull the filenames 
   filenames <- dataset$files$filename
+  filenames <- filenames[grep("*.rds", filenames)] # only rds files
   
-  # Names 
-  names <- filenames[2]
+  # Raw names 
+  names <- filenames[!grepl("study", filenames, ignore.case = TRUE)]
 
   # Survey results 
-  studies <- filenames[c(7,9,11)]
+  studies <- filenames[grep("-\\d+-", filenames)]
+  studies <- studies[order(studies)] # reorder survey results
 
   ## Pooled data 
-  pooled <- filenames[4]
+  pooled <- filenames[grep("123", filenames)]
   
   # Add meta data 
   meta <- data.frame(
@@ -40,10 +42,10 @@ view_data <- function(name_type = NULL, name_target = NULL) {
             "Pooled"),
     
     notes = c("Raw names", 
-            "Study 1 result",
+            "Study 1 result", 
             "Study 2 result", 
             "Study 3 result",
-            "Pooled"))
+            "Pooled")) 
   
   if (is.null(name_type) & is.null(name_target))
     return(meta)
@@ -71,7 +73,7 @@ load_data <- function(file_name = NULL, file_note = NULL) {
     stop("Provide a non-NULL value for either file_name, file_type or file_note.")
     
   }
-  
+
   # Meta data
   meta <- view_data()
   
@@ -87,4 +89,5 @@ load_data <- function(file_name = NULL, file_note = NULL) {
     .f = readr::read_rds)
   
   return(df)
+  
 }
